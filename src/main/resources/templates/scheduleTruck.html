@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Schedule Truck</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</head>
+
+<body>
+<div class="container mt-5">
+    <h1>Schedule Truck</h1>
+    <form th:action="@{/scheduleTruck}" th:object="${deliveryAppointment}" method="post">
+        <div class="mb-3">
+            <label for="licensePlate">Number Plate</label>
+            <input type="text" class="form-control" id="licensePlate" th:field="*{truck.licensePlate}" required>
+        </div>
+        <div class="mb-3">
+            <label for="materialType">Material Type</label>
+            <select class="form-control" id="materialType" th:field="*{materialType}" required>
+                <option value="GYPSUM">GYPSUM</option>
+                <option value="PETCOKES">PETCOKES</option>
+                <option value="SLAG">SLAG</option>
+                <option value="IRON_ORE">IRON_ORE</option>
+                <option value="CEMENT">CEMENT</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="scheduledStartTime">Scheduled Start Time</label>
+            <input type="datetime-local" class="form-control" id="scheduledStartTime" th:field="*{scheduledStartTime}" required>
+        </div>
+        <div class="mb-3">
+            <label for="scheduledEndTime">Scheduled End Time</label>
+            <input type="datetime-local" class="form-control" id="scheduledEndTime" th:field="*{scheduledEndTime}" required>
+        </div>
+        <input type="hidden" th:field="*{truck.sellerPartyId}" th:value="*{truck.sellerPartyId}"/>
+        <button type="submit" class="btn btn-primary">Schedule Truck</button>
+    </form>
+</div>
+</body>
+</html>

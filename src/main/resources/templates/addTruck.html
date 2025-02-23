@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Truck to Waiting List</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Add Truck to Waiting List</h1>
+    <form id="addTruckForm" th:action="@{/waiting-list/{waitingListId}/addTruck(waitingListId=${waitingList.id})}" method="post">
+        <input type="hidden" id="waitingListId" name="waitingListId" th:value="${waitingList.id}">
+        <div class="mb-3">
+            <label for="licensePlate">Number Plate</label>
+            <input type="text" class="form-control" id="licensePlate" name="licensePlate" required>
+        </div>
+        <div class="mb-3">
+            <label for="sellerName">Seller Name</label>
+            <input type="text" class="form-control" id="sellerName" name="sellerName" required>
+        </div>
+        <div class="mb-3">
+            <label for="materialType">Material Type</label>
+            <select class="form-control" id="materialType" name="materialType" required>
+                <option value="GYPSUM">GYPSUM</option>
+                <option value="PETCOKES">PETCOKES</option>
+                <option value="SLAG">SLAG</option>
+                <option value="IRON_ORE">IRON_ORE</option>
+                <option value="CEMENT">CEMENT</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Truck</button>
+    </form>
+</div>
+</body>
+</html>

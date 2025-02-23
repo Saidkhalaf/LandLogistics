@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Appointment Details</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Appointment Details</h1>
+    <div>
+        <p><strong>Truck Nr Plate:</strong> <span th:text="${appointment.truck.licensePlate}"></span></p>
+        <p><strong>Material Type:</strong> <span th:text="${appointment.truck.materialType}"></span></p>
+        <p><strong>Scheduled Arrival Time:</strong> <span th:text="${#temporals.format(appointment.scheduledArrivalTime, 'dd/MM/yy hh:mm a')}"></span></p>
+    </div>
+    <a href="/sellerParties" class="btn btn-primary mt-2">Back to Suppliers</a>
+    <a href="/appointments" class="btn btn-secondary mt-2">Manage Appointment</a>
+</div>
+</body>
+</html>

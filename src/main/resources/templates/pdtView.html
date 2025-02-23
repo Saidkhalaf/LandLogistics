@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>PDT Details</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-4">PDT Details</h1>
+    <div class="card">
+        <div class="card-body">
+            <p class="card-text">Material Type: <span th:text="${pdt.materialType}"></span></p>
+            <p class="card-text">Delivery Date: <span th:text="${pdt.deliveryDate}"></span></p>
+            <p class="card-text">Warehouse Number: <span th:text="${pdt.warehouseNumber}"></span></p>
+            <p class="card-text">Truck License Plate: <span th:text="${pdt.licensePlate}"></span></p>
+            <a href="/assignWbt" class="btn btn-success mt-2">Proceed to Assign WBT</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+### GET request to example server
+GET http://localhost:8080/api/waiting-lists?id=5
+
+###
+GET http://localhost:8080/api/waiting-lists/all
+
+###
+GET http://localhost:8080/waiting-lists
+
+
+###
+POST http://localhost:8080/api/pdt/generate
+Content-Type: application/json
+
+{
+  "materialType": "CEMENT",
+  "deliveryDate": "2024-10-12T00:00:00",
+  "warehouseNumber": 6,
+  "licensePlate": "STU321"
+}
+
+### get pdt by id
+GET localhost:8080/pdt/1
+

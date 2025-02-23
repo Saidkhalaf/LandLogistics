@@ -1,0 +1,16 @@
+###
+POST http://localhost:8080/hello/HelloWarehouse
+
+
+### iets rechtstreeks op de exchange zetten
+POST http://localhost:15672/api/exchanges/%2F/land-to-warehouse-exchange/publish
+Authorization: Basic user password
+Content-Type: application/json
+
+{
+  "properties": {},
+  "routing_key": "late",
+  "payload": "{\"message\": \"HelloWarehouse\"}",
+  "payload_encoding": "string"
+}
+

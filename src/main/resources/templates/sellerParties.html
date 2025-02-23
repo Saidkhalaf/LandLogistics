@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Trucks</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Suppliers</h1>
+    <div th:if="${error}" style="color: red">
+        <p th:text="${error}"></p>
+    </div>
+
+    <a href="/dashboard" class="btn btn-primary mt-2">Go to Dashboard</a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Trucks</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="sellerParty : ${sellerParties}">
+            <td th:text="${sellerParty.name}"></td>
+            <td>
+                <ul th:if="${sellerParty.trucks != null}">
+                    <li th:each="truck : ${sellerParty.trucks}">
+                        <span>Nr Plate: <span th:text="${truck.licensePlate}"></span></span> -
+                        <span>Capacity: <span th:text="${truck.capacity}"></span></span> -
+                        <span>Max Load: <span th:text="${truck.maxLoad}"></span></span> -
+                        <span>Material: <span th:text="${truck.materialType}"></span></span> -
+                        <span th:if="${truck.truckDriver != null}">Driver: <span th:text="${truck.truckDriver.name}"></span></span>
+                        <span th:if="${truck.truckDriver == null}">Driver: No Driver Name</span>
+                    </li>
+                </ul>
+                <span th:if="${sellerParty.trucks == null}">No Trucks</span>
+                <a th:href="@{'/sellerParties/' + ${sellerParty.id} + '/addTruck'}" class="btn btn-primary mt-2" id="addTruckBtn-${sellerParty.id}">Add Truck</a>
+                <form th:if="${showAddTruckFormId == sellerParty.id}" th:action="@{'/sellerParties/' + ${sellerParty.id} + '/addTruck'}" method="post" th:object="${newTruck}">
+                    <div class="form-group">
+                        <label for="licensePlate">Nr Plate:</label>
+                        <input type="text" id="licensePlate" name="licensePlate" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="capacity">Capacity:</label>
+                        <input type="number" id="capacity" name="capacity" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="maxLoad">Max Load:</label>
+                        <input type="number" id="maxLoad" name="maxLoad" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="materialType">Material Type:</label>
+                        <select id="materialType" name="materialType" class="form-control">
+                            <option th:each="type : ${T(be.kdg.sa.land.domain.MaterialType).values()}"
+                                    th:value="${type}" th:text="${type}">Material Type</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-success mt-2">Submit</button>
+                </form>
+            </td>
+            <td>
+                <a th:href="@{'/sellerParties/' + ${sellerParty.id} + '/makeAppointment'}" class="btn btn-secondary mt-2">Make Appointment</a>
+                <form th:if="${showMakeAppointmentFormId == sellerParty.id}" th:action="@{'/sellerParties/' + ${sellerParty.id} + '/makeAppointment'}" method="post" th:object="${newAppointment}">
+                    <div class="form-group">
+                        <label for="truck">Truck:</label>
+                        <select id="truck" name="truckId" class="form-control">
+                            <option th:each="truck : ${sellerParty.trucks}"
+                                    th:value="${truck.id}" th:text="${truck.licensePlate}">Select Truck</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="scheduledArrivalTime">Scheduled Arrival Time:</label>
+                        <input type="datetime-local" id="scheduledArrivalTime" name="scheduledArrivalTime" class="form-control"/>
+                    </div>
+                    <button type="submit" class="btn btn-success mt-2">Submit</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

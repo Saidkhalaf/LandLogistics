@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Waiting List</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Waiting List</h1>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>WaitingList ID</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="waitingList : ${waitingLists}">
+            <td th:text="${waitingList.id}"></td>
+            <td th:text="${waitingList.date}"></td>
+            <td>
+                <a th:href="@{/waiting-list/{id}(id=${waitingList.id})}" class="btn btn-primary">View</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

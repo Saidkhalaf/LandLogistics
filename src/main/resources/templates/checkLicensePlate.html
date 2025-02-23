@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Check License Plate</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Check License Plate</h1>
+    <div th:if="${error}" class="alert alert-danger" role="alert" th:text="${error}"></div>
+    <div th:if="${message}" class="alert alert-success" role="alert" th:utext="${message}"></div>
+    <a href="/dashboard" class="btn btn-primary mt-2">Back to Dashboard</a>
+    <a th:href="@{/pdtView(licensePlate=${licensePlate})}" class="btn btn-success mt-2">Enter The Grounds</a>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6">
+            <form th:action="@{/checkLicensePlate}" method="post">
+                <div class="form-group">
+                    <label for="licensePlate">Enter Truck License Plate:</label>
+                    <input type="text" id="licensePlate" name="licensePlate" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary mt-2">Check</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

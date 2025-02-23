@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Weigh Bridge Ticket</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Assign Weigh Bridge</h1>
+    <div th:if="${error}" class="alert alert-danger" role="alert">
+        <p th:text="${error}"></p>
+    </div>
+    <div th:if="${wbt}">
+        <h2>Weighing Details</h2>
+        <p><strong>Gross Weight on Arrival:</strong> <span th:text="${wbt.grossWeight}"></span></p>
+        <p><strong>Tare Weight:</strong> <span th:text="${wbt.tareWeight}"></span></p>
+        <p><strong>Net Weight:</strong> <span th:text="${wbt.netWeight}"></span></p>
+        <p><strong>Weighing Moment:</strong> <span th:text="${wbt.weighingMoment}"></span></p>
+        <p><strong>Truck License Plate:</strong> <span th:text="${wbt.trucklicensePlate}"></span></p>
+    </div>
+    <a href="/dashboard" class="btn btn-primary mt-2">Back To Dashboard</a>
+</div>
+</body>
+</html>

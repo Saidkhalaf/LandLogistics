@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Appointments</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</head>
+<body>
+<h1>Appointments</h1>
+
+<table class="table">
+    <tr>
+        <th>Truck</th>
+        <th>Material</th>
+        <th>Scheduled Arrival Time</th>
+        <th>Actions</th>
+    </tr>
+    <tr th:each="appointment:${appointments}">
+        <td th:text="${appointment.truck.licensePlate}"></td>
+        <td th:text="${appointment.truck.materialType != null ? appointment.truck.materialType : 'null'}"></td>
+        <td th:text="${appointment.scheduledArrivalTime != null ? appointment.scheduledArrivalTime : 'null'}"></td>
+        <td>
+            <form th:action="@{'/appointments/' + ${appointment.id} + '/delete'}" method="post">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

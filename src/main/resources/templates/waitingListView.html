@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View Waiting List</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Waiting List <span th:text="${waitingList.id}"></span> Details</h1>
+    <div class="mb-3">
+    </div>
+    <div>
+        <h3>Trucks</h3>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Truck ID</th>
+                <th>Number Plate</th>
+                <th>Seller Name </th>
+                <th>Material Type</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="truck : ${waitingList.trucks}">
+                <td th:text="${truck.id}"></td>
+                <td th:text="${truck.licensePlate}"></td>
+                <td th:text="${truck.sellerParty.name}"></td>
+                <td th:text="${truck.materialType}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <a th:href="@{/waiting-list/{waitingListId}/addTruck(waitingListId=${waitingList.id})}" class="btn btn-primary">Add Truck</a>
+</div>
+</body>
+</html>
